@@ -65,6 +65,10 @@ local colorschemes = {
 			vim.opt.guicursor = "n-v-i-c:block-Cursor"
 
 			require("material").setup({
+				high_visibility = {
+					darker = true, -- Enable higher contrast text for darker style
+				},
+
 				plugins = { -- Uncomment the plugins that you use to highlight them
 					-- Available plugins:
 					-- "coc",
@@ -74,32 +78,65 @@ local colorschemes = {
 					-- "eyeliner",
 					-- "fidget",
 					-- "flash",
-					-- "gitsigns",
-					-- "harpoon",
+					"gitsigns",
+					"harpoon",
 					-- "hop",
 					-- "illuminate",
 					-- "indent-blankline",
 					-- "lspsaga",
-					-- "mini",
+					"mini",
 					-- "neogit",
 					-- "neotest",
 					-- "neo-tree",
 					-- "neorg",
-					-- "noice",
+					"noice",
 					-- "nvim-cmp",
 					-- "nvim-navic",
 					-- "nvim-tree",
-					-- "nvim-web-devicons",
+					"nvim-web-devicons",
 					-- "rainbow-delimiters",
 					-- "sneak",
-					-- "telescope",
+					"telescope",
 					-- "trouble",
 					-- "which-key",
-					-- "nvim-notify",
+					"nvim-notify",
 				},
 			})
 		end,
 	},
+
+	bluloco = {
+		"uloco/bluloco.nvim",
+		lazy = false,
+		priority = 1000,
+		dependencies = { "rktjmp/lush.nvim" },
+		config = function()
+			-- your optional config goes here, see below.
+			require("bluloco").setup({
+				style = "dark", -- "auto" | "dark" | "light"
+				transparent = false,
+				italics = false,
+				terminal = vim.fn.has("gui_running") == 1, -- bluoco colors are enabled in gui terminals per default.
+				guicursor = true,
+				rainbow_headings = false, -- if you want different colored headings for each heading level
+			})
+
+			vim.cmd.colorscheme("bluloco")
+			vim.opt.guicursor = "n-v-i-c:block-Cursor"
+		end,
+	},
+	vague = {
+		"vague2k/vague.nvim",
+		config = function()
+			require("vague").setup({
+				lazy = false, -- make sure we load this during startup if it is your main colorscheme
+				priority = 1000, -- make sure to load this before all the other plugins
+			})
+
+			vim.cmd.colorscheme("vague")
+			vim.opt.guicursor = "n-v-i-c:block-Cursor"
+		end,
+	},
 }
 
-return colorschemes.material
+return colorschemes.vague

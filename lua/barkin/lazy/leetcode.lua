@@ -16,7 +16,7 @@ return {
 	},
 	config = function()
 		require("leetcode").setup({
-			lang = "kotlin",
+			lang = "python3",
 		})
 	end,
 }
